@@ -1,0 +1,20 @@
+.input{
+    border: none;
+    width: 350px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+.reg{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 50px;
+}
+.reg-btn{
+    width: 350px;
+    margin-top: 5px;
+    padding: 10px;
+    border: none;
+    background-color:rgb(71, 89, 255);
+    color:white;
+}

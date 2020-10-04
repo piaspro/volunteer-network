@@ -1,0 +1,11 @@
+.formBody{
+    border:1px solid #ced4da;
+    border-radius:10px;
+}
+
+.datePicker{
+    padding-top: 6px;
+    padding-bottom: 7px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}

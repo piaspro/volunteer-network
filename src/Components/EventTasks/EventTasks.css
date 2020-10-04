@@ -1,0 +1,6 @@
+.media{
+    border: 1px solid black !important;
+    border-radius:10px;
+    background-color:rgb(252, 250, 250);
+    display: block !important;
+}
