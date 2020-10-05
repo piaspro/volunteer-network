@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import {Container} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { userContext } from '../../App';
 import logo from '../../images/logos/Group 1329.png'
 import './Register.css'
@@ -12,17 +12,24 @@ import './Register.css'
 const Register = () => {
     const [loggedInUser, setLoggedInUser] = useContext(userContext);
     const [startDate, setStartDate] = useState(new Date());
-    
+    let history = useHistory();
     const sendData = () => {
         const description = document.getElementById('description').value;
-        const allInfo = {...loggedInUser, startDate, description}
+        const {email, img, name, project} = loggedInUser
+        const allInfo = {email, img, name, project, startDate, description};
         fetch('http://localhost:5000/addInfo', {
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify(allInfo)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(value => {
+            if (value){
+                history.push("/eventTasks");
+            }else {
+                alert("Registration Failed !!")
+            }
+        })
     }
 
     return (
@@ -38,7 +45,7 @@ const Register = () => {
                     <DatePicker className="input" selected={startDate} onChange={date => setStartDate(date)} name="date"/> <br/>
                     <input className="input" id="description" type="text" placeholder="Description" name="Description" required/> <br/>
                     <input className="input" type="text" placeholder={loggedInUser.project} name={loggedInUser.project}/> <br/>
-                    <Link to="/eventTasks"><button onClick={sendData} className="reg-btn" type="submit">Registration</button></Link>
+                    <button onClick={sendData} className="reg-btn" type="submit">Registration</button>
                 </div>
             </Container>
         </div>

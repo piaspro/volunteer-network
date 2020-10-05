@@ -8,7 +8,7 @@ import Header from '../Header/Header';
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { userContext } from '../../App';
 
 
@@ -17,7 +17,7 @@ import { userContext } from '../../App';
 const Home = () => {
     const [projects, setProjects] = useState([]);
     const [loggedInUser, setLoggedInUser] = useContext(userContext);
-
+    let history = useHistory();
     useEffect(() => {
         fetch('http://localhost:5000/getProject')
         .then(res => res.json())
@@ -26,6 +26,7 @@ const Home = () => {
 
     const handleProjects = (element) => {
         setLoggedInUser(element)
+        history.push("/register");
     }
 
     return (
@@ -52,7 +53,7 @@ const Home = () => {
                                                         <Card.Img variant="top" src={element.img} />
                                                         <Card.Body>
                                                             <Card.Text>
-                                                            <Link to="/register"> <button onClick={() => handleProjects(element)} className="button">{element.project}</button></Link>
+                                                            <button onClick={() => handleProjects(element)} className="button">{element.project}</button>
                                                             </Card.Text>
                                                         </Card.Body>
                                                     </Card>

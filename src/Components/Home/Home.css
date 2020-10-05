@@ -4,7 +4,7 @@
     flex: 0.5 1 auto !important;
 }
 .card-body{
-    background-color: tomato !important;
+    background-color: tomato;
     border-radius: 0px 0px 5px 5px;
     position: absolute;
     top: 220px;

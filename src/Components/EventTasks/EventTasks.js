@@ -28,7 +28,7 @@ const EventTasks = () => {
     },[userData])
 
     const deleteProject = (id) => {
-        alert('Are You Sure?')
+        console.log(id)
         fetch(`http://localhost:5000/deleteData/${id}`, {
             method: 'DELETE'
         })

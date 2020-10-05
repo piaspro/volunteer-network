@@ -19,7 +19,6 @@ const Admin = () => {
     },[volunteer])
 
     const deleteItem = (id) => {
-        alert('Are You Sure?')
         fetch(`http://localhost:5000/deleteItem/${id}`, {
             method: 'DELETE'
         })
@@ -67,7 +66,7 @@ const Admin = () => {
                                                             <Col xs={4}><h6>{user.email}</h6></Col>
                                                             <Col xs={2}>{(new Date(user.startDate).toLocaleDateString(undefined, options))}</Col>
                                                             <Col xs={3}><h6>{user.project}</h6></Col>
-                                                            <Col xs={1}><button onClick={() => deleteItem(`${user._id}`)} className="trash"><img src={trash} height="30" className="d-inline-block align-top" alt="logo" /></button></Col>
+                                                            <Col xs={1}><button onClick={() => deleteItem(`${user._id}`)} className="trash"><img src={trash} height="25" className="d-inline-block align-top" alt="logo" /></button></Col>
                                                         </Row>) 
                                 }
                             </div>

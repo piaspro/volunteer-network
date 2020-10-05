@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Col, Container, Form, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/logos/Group 1329.png'
 import users from '../../images/logos/users-alt 1.png'
 import plus from '../../images/logos/plus 1.png'
@@ -8,6 +8,7 @@ import DatePicker from 'react-datepicker';
 import './AddEvent.css'
 
 const AddEvent = () => {
+    let history = useHistory();
 
     const [startDate, setStartDate] = useState(new Date());
     const sendData = () => {
@@ -21,7 +22,13 @@ const AddEvent = () => {
             body: JSON.stringify(allData)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(value => {
+           if (value){
+            history.push("/home");
+           }else{
+               alert("Could Not Add !!")
+           }
+        })
     }
     return (
         <Container className="mt-3" fluid="md">
@@ -33,10 +40,10 @@ const AddEvent = () => {
                         </Navbar.Brand>
                         <div className="mt-5">
                             <div className="mt-3">
-                                <Link  to='/admin'> <img src={users} height="25" className="d-inline-block align-top" alt="logo" /> Volunteer Register List</Link>
+                                <Link  to='/admin'> <img src={users} height="20" className="d-inline-block align-top" alt="logo" /> Volunteer Register List</Link>
                             </div>
                             <div className="mt-3">
-                                <Link  to='/addEvent'> <img src={plus} height="25" className="d-inline-block align-top" alt="logo" /> Add Event</Link>
+                                <Link  to='/addEvent'> <img src={plus} height="20" className="d-inline-block align-top" alt="logo" /> Add Event</Link>
                             </div>
                         </div>
                     </div>
@@ -68,7 +75,7 @@ const AddEvent = () => {
                                     </Form.Group>
                                 </Form.Row>
                             </Form>
-                            <Button onClick={sendData} className="mt-3" variant="primary">Submit</Button>
+                            <Link to="/home"><Button onClick={sendData} className="mt-3" variant="primary">Submit</Button></Link>
                         </div>
                     </div>
                 </div>
