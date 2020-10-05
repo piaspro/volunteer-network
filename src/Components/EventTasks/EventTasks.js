@@ -10,11 +10,10 @@ import { userContext } from '../../App';
 
 const EventTasks = () => {
     const [userData, setUserData] = useState([]);
-    
     const [loggedInUser, setLoggedInUser] = useContext(userContext);
-
+    // Date format
     const options = {  day: 'numeric', month: 'long',year: 'numeric' };
-
+    // volunteer project of specific user
     useEffect(() => {
         fetch('http://localhost:5000/user?email='+loggedInUser.email, {
             method: 'GET',
@@ -26,7 +25,7 @@ const EventTasks = () => {
         .then(res => res.json())
         .then(data => setUserData(data))
     },[userData])
-
+    // Delete project
     const deleteProject = (id) => {
         console.log(id)
         fetch(`http://localhost:5000/deleteData/${id}`, {
@@ -35,18 +34,11 @@ const EventTasks = () => {
         .then(res => res.json())
         .then(data => console.log(data))
     }
-
-
     return (
         <Container fluid="md">
             <Navbar bg="transparent" expand="lg">
                 <Navbar.Brand className="mr-auto justify-content-center" href="#home">
-                        <img
-                            src={logo}
-                            height="50"
-                            className="d-inline-block align-top"
-                            alt="logo"
-                        />
+                    <img src={logo} height="50" className="d-inline-block align-top" alt="logo"/>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -59,9 +51,6 @@ const EventTasks = () => {
                         <h5 className="mt-2">{loggedInUser.name}</h5>
                 </Navbar.Collapse>
             </Navbar>
-            <Container fluid="md" id="projects">
-
-            </Container>
             <Row>
                 { userData.map(data => <Col>
                                             <Media className="m-3 p-3 d-sm-flex">
@@ -72,7 +61,8 @@ const EventTasks = () => {
                                                     <Button onClick={() => deleteProject(`${data._id}`)} className="mr-3 mt-5" variant="danger">Cancel</Button>
                                                 </Media.Body>
                                             </Media>
-                                        </Col>)}
+                                        </Col>)
+                }
             </Row>
         </Container>
     );

@@ -11,24 +11,21 @@ import Row from 'react-bootstrap/Row'
 import { useHistory } from 'react-router-dom';
 import { userContext } from '../../App';
 
-
-
-
 const Home = () => {
     const [projects, setProjects] = useState([]);
     const [loggedInUser, setLoggedInUser] = useContext(userContext);
     let history = useHistory();
+    // Display all project
     useEffect(() => {
         fetch('http://localhost:5000/getProject')
         .then(res => res.json())
         .then(data => setProjects(data))
     },[projects])
-
+    // Pass all info
     const handleProjects = (element) => {
         setLoggedInUser(element)
         history.push("/register");
     }
-
     return (
         <div>
             <Header></Header>
@@ -37,9 +34,7 @@ const Home = () => {
                     <h1>I GROW BY HELPING PEOPLE IN NEED</h1>
                 </div>
                 <InputGroup  className="mt-3 mb-5 justify-content-lg-center">
-                    <FormControl
-                    placeholder="Search"
-                    />
+                    <FormControl  placeholder="Search" />
                     <InputGroup.Append>
                         <Button variant="primary">Search</Button>
                     </InputGroup.Append>
@@ -61,7 +56,6 @@ const Home = () => {
                     }
                 </Row>
             </Container>
-
         </div>
     );
 };

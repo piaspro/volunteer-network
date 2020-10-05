@@ -12,12 +12,7 @@ const Header = () => {
         <Container fluid="md">
             <Navbar bg="transparent" expand="lg">
                 <Navbar.Brand className="mr-auto justify-content-center" href="#home">
-                        <img
-                            src={logo}
-                            height="50"
-                            className="d-inline-block align-top"
-                            alt="logo"
-                        />
+                    <img src={logo} height="50" className="d-inline-block align-top" alt="logo" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

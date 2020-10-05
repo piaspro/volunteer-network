@@ -13,10 +13,12 @@ const Register = () => {
     const [loggedInUser, setLoggedInUser] = useContext(userContext);
     const [startDate, setStartDate] = useState(new Date());
     let history = useHistory();
+    // Send Data
     const sendData = () => {
         const description = document.getElementById('description').value;
         const {email, img, name, project} = loggedInUser
         const allInfo = {email, img, name, project, startDate, description};
+
         fetch('http://localhost:5000/addInfo', {
             method:'POST',
             headers:{'Content-Type': 'application/json'},
@@ -31,7 +33,6 @@ const Register = () => {
             }
         })
     }
-
     return (
         <div>
             <div className="img">

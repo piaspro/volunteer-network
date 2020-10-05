@@ -9,15 +9,15 @@ import './Admin.css'
 
 const Admin = () => {
     const [volunteer, setVolunteer] = useState([])
-    
+    // Date format
     const options = {  day: 'numeric', month: 'long',year: 'numeric' };
-
+    // fetch and show
     useEffect(() => {
         fetch('http://localhost:5000/getVolunteer')
         .then(res => res.json())
         .then(data => setVolunteer(data))
     },[volunteer])
-
+    // Delete user data
     const deleteItem = (id) => {
         fetch(`http://localhost:5000/deleteItem/${id}`, {
             method: 'DELETE'
@@ -25,8 +25,6 @@ const Admin = () => {
         .then(res => res.json())
         .then(data => console.log(data))
     }
-
-
     return (
         <Container className="mt-3" fluid="md">
             <div className="container">
@@ -60,14 +58,13 @@ const Admin = () => {
                             </div>
                             <div id="list">
                                 {
-                                    volunteer.map( user => 
-                                                        <Row className="p-2">
-                                                            <Col xs={2}><h6>{user.name}</h6></Col>
-                                                            <Col xs={4}><h6>{user.email}</h6></Col>
-                                                            <Col xs={2}>{(new Date(user.startDate).toLocaleDateString(undefined, options))}</Col>
-                                                            <Col xs={3}><h6>{user.project}</h6></Col>
-                                                            <Col xs={1}><button onClick={() => deleteItem(`${user._id}`)} className="trash"><img src={trash} height="25" className="d-inline-block align-top" alt="logo" /></button></Col>
-                                                        </Row>) 
+                                    volunteer.map( user =>  <Row className="p-2">
+                                                                <Col xs={2}><h6>{user.name}</h6></Col>
+                                                                <Col xs={4}><h6>{user.email}</h6></Col>
+                                                                <Col xs={2}>{(new Date(user.startDate).toLocaleDateString(undefined, options))}</Col>
+                                                                <Col xs={3}><h6>{user.project}</h6></Col>
+                                                                <Col xs={1}><button onClick={() => deleteItem(`${user._id}`)} className="trash"><img src={trash} height="25" className="d-inline-block align-top" alt="logo" /></button></Col>
+                                                            </Row>) 
                                 }
                             </div>
                         </div>

@@ -19,13 +19,13 @@ const LogIn = () => {
     const history = useHistory();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
-
+    // Initialize firebase
     if(firebase.apps.length === 0){
         firebase.initializeApp(firebaseConfig);
     }
+    // Google Sign In
     const googleSignIn = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
-        
         firebase.auth().signInWithPopup(provider)
         .then( (result) => {
              // The signed-in user info.
@@ -43,7 +43,7 @@ const LogIn = () => {
             setUser(newInfo);
           });
     }
-
+    // Use of token for authentication
     const storeAuthToken = () => {
         firebase.auth().currentUser.getIdToken( true)
         .then( (idToken) => {
@@ -51,10 +51,8 @@ const LogIn = () => {
           }).catch( (error) => {
             // Handle error
             console.log(error)
-          });
-          
+          }); 
     }
-
     return (
         <div>
             <div className="img">

@@ -9,8 +9,9 @@ import './AddEvent.css'
 
 const AddEvent = () => {
     let history = useHistory();
-
+    // date state
     const [startDate, setStartDate] = useState(new Date());
+    // function to send data to server
     const sendData = () => {
         const description = document.getElementById('description').value;
         const project = document.getElementById('project').value;
@@ -55,19 +56,19 @@ const AddEvent = () => {
                             <Form className="formBody p-3">
                                 <Form.Row>
                                     <Form.Group as={Col} controlId="formGridEmail">
-                                    <Form.Label>Event Title</Form.Label>
-                                    <Form.Control id="project" type="text" placeholder="Event Title" name="project"/>
+                                        <Form.Label>Event Title</Form.Label>
+                                        <Form.Control id="project" type="text" placeholder="Event Title" name="project"/>
                                     </Form.Group>
 
                                     <Form.Group as={Col} controlId="formGridPassword">
-                                    <Form.Label>Event Date</Form.Label> <br/>
-                                    <DatePicker className="datePicker pr-5 pl-2" selected={startDate} onChange={date => setStartDate(date)} name="date"/>
+                                        <Form.Label>Event Date</Form.Label> <br/>
+                                        <DatePicker className="datePicker pr-5 pl-2" selected={startDate} onChange={date => setStartDate(date)} name="date"/>
                                     </Form.Group>
                                 </Form.Row>
                                 <Form.Row>
                                     <Form.Group as={Col} controlId="exampleForm.ControlTextarea1">
-                                    <Form.Label>Description</Form.Label>
-                                    <Form.Control id="description" as="textarea" rows={3} placeholder="Enter Description" />
+                                        <Form.Label>Description</Form.Label>
+                                        <Form.Control id="description" as="textarea" rows={3} placeholder="Enter Description" />
                                     </Form.Group>
 
                                     <Form.Group>

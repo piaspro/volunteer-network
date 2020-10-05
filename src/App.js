@@ -12,12 +12,11 @@ import Admin from './Components/Admin/Admin';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import EventTasks from './Components/EventTasks/EventTasks';
 import AddEvent from './Components/AddEvent/AddEvent';
-
+// export data
 export const userContext = createContext();
 
 function App() {
-  
-const [loggedInUser, setLoggedInUser] = useState ({});
+  const [loggedInUser, setLoggedInUser] = useState ({});
 
   return (
     <userContext.Provider value={[loggedInUser, setLoggedInUser]}>
